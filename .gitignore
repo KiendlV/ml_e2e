@@ -1,2 +1,6 @@
 .venv
 .cache.sqlite
+
+__pycache__
+./__pycache__
+../__pycache__
