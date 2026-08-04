@@ -17,23 +17,27 @@ spec:
         app: rain-predictor
 
     spec:
+
+      imagePullSecrets:
+        - name: ghcr-secret
+
       containers:
-      - name: rain-predictor
-        image: yourusername/rain-predictor:v1
+        - name: rain-predictor
+          image: ghcr.io/kiendlv/ml_e2e/ml_model_predictor_api:latest
 
-        ports:
-        - containerPort: 5000
+          ports:
+            - containerPort: 5000
 
-        livenessProbe:
-          httpGet:
-            path: /health
-            port: 5000
-          initialDelaySeconds: 10
-          periodSeconds: 20
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 5000
+            initialDelaySeconds: 10
+            periodSeconds: 20
 
-        readinessProbe:
-          httpGet:
-            path: /health
-            port: 5000
-          initialDelaySeconds: 5
-          periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 5000
+            initialDelaySeconds: 5
+            periodSeconds: 10
