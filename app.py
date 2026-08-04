@@ -45,9 +45,11 @@ def predict():
 def hello():
     return f"Hello from Kubernetes! Host: {socket.gethostname()}\n"
 
-@app.route("/health")
+@app.get("/health")
 def health():
-    return "OK\n"
+    return {
+        "status": "ok"
+    }, 200
 
 if __name__ == "__main__":
     app.run(

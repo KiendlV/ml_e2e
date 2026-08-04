@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: rain-predictor
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: rain-predictor
+
+  template:
+    metadata:
+      labels:
+        app: rain-predictor
+
+    spec:
+      containers:
+      - name: rain-predictor
+        image: yourusername/rain-predictor:v1
+
+        ports:
+        - containerPort: 5000
+
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 5000
+          initialDelaySeconds: 10
+          periodSeconds: 20
+
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 5000
+          initialDelaySeconds: 5
+          periodSeconds: 10
