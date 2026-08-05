@@ -1,0 +1,17 @@
+data:
+  file: historical_training_data_2025.parquet
+
+features:
+  - temperature_2m
+  - relative_humidity_2m
+  - surface_pressure
+
+training:
+  epochs: 100
+  batch_size: 32
+  learning_rate: 0.001
+  test_size: 0.2
+  random_state: 42
+
+model:
+  name: base_ff_model_v1

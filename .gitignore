@@ -1,6 +1,95 @@
-.venv
+
+# ----------------------
+# Python
+# ----------------------
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Python tooling
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
 .cache.sqlite
 
-__pycache__
-./__pycache__
-../__pycache__
+# ----------------------
+# Jupyter
+# ----------------------
+.ipynb_checkpoints/
+
+
+# ----------------------
+# ML artifacts
+# ----------------------
+
+# Trained model weights
+*.pth
+*.pt
+*.ckpt
+models/model_weights_v1/
+
+# Serialized objects
+*.pkl
+*.pickle
+
+# MLflow generated files
+mlruns/
+mlflow.db
+
+# Local experiment outputs
+runs/
+outputs/
+
+
+# ----------------------
+# Data
+# ----------------------
+
+# Raw/processed data
+data/raw/
+data/processed/
+
+# Keep DVC metadata
+!data/**/*.dvc
+
+
+# ----------------------
+# Docker
+# ----------------------
+
+*.log
+
+
+# ----------------------
+# Kubernetes / Helm
+# ----------------------
+
+# Helm local dependencies
+helm/charts/*
+
+# Helm generated files
+*.tgz
+
+
+# ----------------------
+# OS
+# ----------------------
+
+.DS_Store
+.idea/
+.vscode/
+
+
+# ----------------------
+# Secrets
+# ----------------------
+
+.env
+.env.*
+*.pem
+*.key
