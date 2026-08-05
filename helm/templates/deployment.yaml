@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: {{ include "rain-predictor.fullname" . }}
+
+spec:
+  replicas: {{ .Values.replicaCount }}
+
+  selector:
+    matchLabels:
+      app: {{ include "rain-predictor.name" . }}
+
+  template:
+    metadata:
+      labels:
+        app: {{ include "rain-predictor.name" . }}
+
+    spec:
+
+      imagePullSecrets:
+        {{- toYaml .Values.imagePullSecrets | nindent 8 }}
+
+      containers:
+        - name: {{ include "rain-predictor.name" . }}
+
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+
+          ports:
+            - containerPort: {{ .Values.containerPort }}
+
+          livenessProbe:
+            httpGet:
+              path: {{ .Values.health.path }}
+              port: {{ .Values.containerPort }}
+            initialDelaySeconds: {{ .Values.health.initialDelaySeconds.liveness }}
+            periodSeconds: {{ .Values.health.periodSeconds.liveness }}
+
+          readinessProbe:
+            httpGet:
+              path: {{ .Values.health.path }}
+              port: {{ .Values.containerPort }}
+            initialDelaySeconds: {{ .Values.health.initialDelaySeconds.readiness }}
+            periodSeconds: {{ .Values.health.periodSeconds.readiness }}

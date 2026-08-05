@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: {{ include "rain-predictor.fullname" . }}
+
+spec:
+  type: {{ .Values.service.type }}
+
+  selector:
+    app: {{ include "rain-predictor.name" . }}
+
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: {{ .Values.containerPort }}

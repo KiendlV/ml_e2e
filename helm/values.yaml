@@ -1,0 +1,24 @@
+replicaCount: 1
+
+image:
+  repository: ghcr.io/kiendlv/ml_e2e/ml_model_predictor_api
+  tag: latest
+  pullPolicy: IfNotPresent
+
+imagePullSecrets:
+  - name: ghcr-secret
+
+service:
+  type: ClusterIP
+  port: 5000
+
+containerPort: 5000
+
+health:
+  path: /health
+  initialDelaySeconds:
+    liveness: 10
+    readiness: 5
+  periodSeconds:
+    liveness: 20
+    readiness: 10
