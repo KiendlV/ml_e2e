@@ -16,3 +16,7 @@ python -m src.training.run_training
 # For prediction after helm deployment:
 
 kubectl port-forward service/machine-learning-machine-learning 5000:5000
+
+# For new data
+
+Run dvc add <filename> and dont have it ignored in the gitignore, the tracking works by itself

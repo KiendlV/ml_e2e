@@ -51,8 +51,8 @@ outputs/
 # ----------------------
 
 # Raw/processed data
-data/raw/
-data/processed/
+#data/raw/
+#data/processed/
 
 # Keep DVC metadata
 !data/**/*.dvc
